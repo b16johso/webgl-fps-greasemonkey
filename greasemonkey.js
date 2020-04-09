@@ -6,20 +6,35 @@
 
 var count;
 var numbers = [];
-var interval = 1000;
+var intervalTime = 1000;
+var interval;
 
 window.addEventListener(
 	"load",
 	function () {
-		//count = 0;
-		setInterval(measureFPS, interval);
+		count = 0;
+		interval = setInterval(measureFPS, intervalTime);
 	},
 	false
 );
 
 //Hämta FPS varje sekund
 function measureFPS() {
-	//count++;
-	numbers.push(parseInt(document.getElementsByTagName("div")[1].textContent));
-	console.log(numbers);
+	count++;
+	if (count > 10) {
+		clearInterval(interval);
+	} else {
+		numbers.push(parseInt(document.getElementsByTagName("div")[1].textContent));
+		console.log(numbers);
+	}
+}
+
+function getData() {
+	// Make anchor and click it!
+	var anchor = document.createElement("a");
+	anchor.setAttribute("href", encodeURI(numbers));
+	anchor.setAttribute("download", "my_data.csv");
+	anchor.innerHTML = "Click Here to download";
+	document.body.appendChild(anchor);
+	anchor.click();
 }
