@@ -3,7 +3,7 @@
 // @version  1
 // @grant    GM.getValue
 // @grant    GM.setValue
-// @include  http://127.0.0.1:5500*
+// @include  http://127.0.0.1:5500/*
 // ==/UserScript==
 
 var count;
