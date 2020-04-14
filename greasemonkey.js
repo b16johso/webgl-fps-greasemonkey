@@ -14,7 +14,7 @@ var interval;
 var isRunning = false;
 
 window.addEventListener(
-	"mousedown",
+	"pointerdown",
 	function () {
 		if (!isRunning) {
 			isRunning = true;
@@ -43,12 +43,9 @@ function resetScript() {
 
 function downloadCSV() {
 	var data = fps.toString();
-	var a = document.createElement("a");
-	a.href = "data:application/csv;charset=utf-8," + encodeURIComponent(data);
-	//supported by chrome 14+ and firefox 20+
-	a.download = "data.csv";
-	//needed for firefox
-	document.getElementsByTagName("body")[0].appendChild(a);
-	//supported by chrome 20+ and firefox 5+
-	a.click();
+	var link = document.createElement("a");
+	link.href = "data:application/csv;charset=utf-8," + encodeURIComponent(data);
+	link.download = "data.csv";
+	document.getElementsByTagName("body")[0].appendChild(link);
+	link.click();
 }
