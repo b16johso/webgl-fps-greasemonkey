@@ -26,8 +26,7 @@ window.addEventListener(
 
 				if (timesRun === timesToRun) {
 					//downloadCSV();
-					clearInterval(interval);
-					isRunning = false;
+					resetScript();
 					console.log("Ran " + timesRun + " times");
 				}
 			}, intervalTime);
@@ -35,6 +34,12 @@ window.addEventListener(
 	},
 	false
 );
+
+function resetScript() {
+	clearInterval(interval);
+	fps = [];
+	isRunning = false;
+}
 
 function downloadCSV() {
 	var data = fps.toString();
