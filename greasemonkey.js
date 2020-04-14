@@ -14,7 +14,7 @@ var interval;
 var isRunning = false;
 
 window.addEventListener(
-	"click",
+	"mousedown",
 	function () {
 		if (!isRunning) {
 			isRunning = true;
@@ -25,7 +25,7 @@ window.addEventListener(
 				console.log(fps);
 
 				if (timesRun === timesToRun) {
-					//downloadCSV();
+					downloadCSV();
 					resetScript();
 					console.log("Ran " + timesRun + " times");
 				}
