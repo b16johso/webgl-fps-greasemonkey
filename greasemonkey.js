@@ -24,12 +24,24 @@ window.addEventListener(
 				fps.push(parseInt(document.getElementsByTagName("div")[1].textContent));
 				console.log(fps);
 
-				if (timesRun === timesToRun) {
+				/*if (timesRun === timesToRun) {
 					downloadCSV();
 					resetScript();
 					console.log("Ran " + timesRun + " times");
-				}
+				}*/
 			}, intervalTime);
+		}
+	},
+	false
+);
+
+window.addEventListener(
+	"keydown",
+	function (e) {
+		if (e.code === "KeyJ") {
+			console.log("Pressed J");
+			downloadCSV();
+			resetScript();
 		}
 	},
 	false
