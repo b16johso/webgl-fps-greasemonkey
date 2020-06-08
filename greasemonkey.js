@@ -8,11 +8,13 @@
 // ==/UserScript==
 
 var timesRun;
-var timesToRun = 10;
+var timesToRun = 2;
 var fps = [];
 var intervalTime = 1000;
 var interval;
 var isRunning = false;
+var csv = [];
+var currentTest = 0;
 
 window.addEventListener(
   "pointerdown",
@@ -22,8 +24,8 @@ window.addEventListener(
       timesRun = 0;
       interval = setInterval(function () {
         timesRun++;
-        fps.push(parseInt(document.getElementsByTagName("div")[1].textContent));
-        console.log(fps);
+        fps.push(parseInt(document.getElementsByTagName("div")[1].textContent).toString());
+        //console.log(fps);
 
         /*if (timesRun === timesToRun) {
 					downloadCSV();
@@ -41,8 +43,11 @@ window.addEventListener(
   function (e) {
     if (e.code === "KeyJ") {
       console.log("Pressed J");
-      downloadCSV();
+      console.log(currentTest);
       resetScript();
+      if (currentTest > timesToRun) {
+        downloadCSV();
+      }
     }
   },
   false
@@ -50,12 +55,16 @@ window.addEventListener(
 
 function resetScript() {
   clearInterval(interval);
+  fps.push("\n");
+  csv.push(fps);
+  console.log(csv);
   fps = [];
   isRunning = false;
+  currentTest++;
 }
 
 function downloadCSV() {
-  var data = fps.toString();
+  var data = csv.toString();
   var link = document.createElement("a");
   link.href = "data:application/csv;charset=utf-8," + encodeURIComponent(data);
   link.download = "data.csv";
